@@ -16,6 +16,7 @@ const corsOptions = {
   optionsSuccessStatus: 200, // Some legacy browsers choke on 204
   allowedHeaders: ['Content-Type', 'Authorization']
 };
+
 app.use(cors(corsOptions));
 
 dotenv.config();
