@@ -13,7 +13,8 @@ const corsOptions = {
   origin: ['https://quiz-59jv.vercel.app', 'https://quiz.techpixelsgfx.com/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Array of allowed origins
   credentials: true, // If you need to send cookies or auth headers
-  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use(cors(corsOptions));
 
