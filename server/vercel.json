@@ -1,38 +1,15 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-
-  "buildCommand": "npm run build",
-  "outputDirectory": "public",
-
-  "cleanUrls": true,
-
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "server.js",
+      "use": "@vercel/node"
     }
   ],
-
-  "redirects": [
+  "routes": [
     {
-      "source": "/old-route",
-      "destination": "/new-route",
-      "permanent": false
-    }
-  ],
-
-  "headers": [
-    {
-      "source": "/api/:path*",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" }
-      ]
+      "src": "/(.*)",
+      "dest": "server.js"
     }
   ]
 }
