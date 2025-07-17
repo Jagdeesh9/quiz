@@ -12,18 +12,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.send("hello world");
-})
+});
 
 // Routes
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/performance", performanceRoutes);
 
-// Database Connection
-connectDB();
+// Database Connection (ensure it works with serverless)
+connectDB().catch(err => console.error("Database connection error:", err));
 
-// Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// Export the app for Vercel
+export default app;
