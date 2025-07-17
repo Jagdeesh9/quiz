@@ -13,7 +13,7 @@ const AvailableQuizzes = () => {
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const { data } = await axios.get("https://quiz-backend-9nkq.onrender.com/api/quizzes");
+        const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/quizzes`);
         
         // Filter quizzes where studentId is included in assignedStudents
         const assignedQuizzes = data.filter((quiz) => quiz.assignedStudents.includes(studentId));

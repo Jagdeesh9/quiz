@@ -2,16 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-const API_URL = "https://quiz-backend-9nkq.onrender.com/api/quizzes";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/quizzes`;
 
 // Async action to submit quiz
 export const submitQuiz = createAsyncThunk(
   "quiz/submitQuiz",
   async ({ studentId, quizId, answers }, { rejectWithValue }) => {
-    console.log('dispatching...');
-    console.log(studentId, quizId, answers);
-    try {
-      const response = await axios.post(`https://quiz-backend-9nkq.onrender.com/api/performance/submit`, {
+      try {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/performance/submit`, {
         studentId,
         quizId,
         answers,

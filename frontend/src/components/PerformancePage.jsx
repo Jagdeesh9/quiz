@@ -9,7 +9,7 @@ const PerformancePage = () => {
   useEffect(() => {
     const fetchPerformance = async () => {
       try {
-        const { data } = await axios.get(`https://quiz-backend-9nkq.onrender.com/api/quizzes/performance/${id}`);
+        const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/quizzes/performance/${id}`);
         setPerformance(data);
       } catch (error) {
         console.error("Error fetching performance:", error);

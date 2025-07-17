@@ -17,7 +17,7 @@ const QuizPage = () => {
     const fetchQuiz = async () => {
       try {
         const { data } = await axios.get(
-          `https://quiz-backend-9nkq.onrender.com/api/quizzes/${id}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/quizzes/${id}`
         );
         setQuiz(data);
       } catch (error) {

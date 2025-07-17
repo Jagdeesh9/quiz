@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "https://quiz-backend-9nkq.onrender.com/api/auth";
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
 
 // Fetch students
 export const fetchStudents = createAsyncThunk("students/fetchStudents", async () => {
@@ -12,7 +12,7 @@ export const fetchStudents = createAsyncThunk("students/fetchStudents", async ()
 // Assign Quiz
 export const assignQuiz = createAsyncThunk("students/assignQuiz", async ({ quizId, studentId }) => {
   const response = await axios.post(
-    `https://quiz-backend-9nkq.onrender.com/api/quizzes/${quizId}/assign`, 
+    `${import.meta.env.VITE_API_BASE_URL}/api/quizzes/${quizId}/assign`, 
     { studentId },
     {
       headers: {
@@ -35,9 +35,7 @@ export const addStudent = createAsyncThunk("students/addStudent", async (student
 
 // Delete student
 export const deleteStudent = createAsyncThunk("students/deleteStudent", async (studentId) => {
-  console.log(`${API_BASE_URL}/delete/${studentId}`);
-  console.log(localStorage.getItem("token"));
-  await axios.delete(`${API_BASE_URL}/delete/${studentId}`, {
+    await axios.delete(`${API_BASE_URL}/delete/${studentId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

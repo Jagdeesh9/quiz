@@ -43,9 +43,7 @@ const AddQuizModal = ({ setIsModalOpen, editQuiz }) => {
   };
 
   const handleOptionChange = (qIndex, optIndex, value) => {
-
-    console.log(qIndex, optIndex, value);
-    const updatedQuestions = [...formData.questions];
+     const updatedQuestions = [...formData.questions];
     const updatedQuestionsCopy = [...updatedQuestions];
     
 
@@ -55,9 +53,7 @@ const AddQuizModal = ({ setIsModalOpen, editQuiz }) => {
       ...updatedQuestionsCopy[qIndex], // Copy the object to keep immutability
       ['options']: newOptions // Update the specific field dynamically
     };
- 
-    console.log(newOptions);
-    setFormData({ ...formData, questions: updatedQuestionsCopy });
+     setFormData({ ...formData, questions: updatedQuestionsCopy });
   };
   
 
@@ -80,11 +76,10 @@ const AddQuizModal = ({ setIsModalOpen, editQuiz }) => {
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       if (editQuiz?._id) {
-        console.log(`Updating quiz with ID: ${editQuiz._id}`);
-        await axios.put(`https://quiz-backend-9nkq.onrender.com/api/quizzes/${editQuiz._id}`, formData, config);
+         await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/quizzes/${editQuiz._id}`, formData, config);
         toast.success("Quiz updated successfully!");
       } else {
-        await axios.post("https://quiz-backend-9nkq.onrender.com/api/quizzes", formData, config);
+        await axios.post("${import.meta.env.VITE_API_BASE_URL}/api/quizzes", formData, config);
         toast.success("Quiz created successfully!");
       }
 
